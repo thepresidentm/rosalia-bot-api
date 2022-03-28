@@ -1,6 +1,13 @@
 // Librerias
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
+
+// cors
+var corsOptions = {
+    origin: procces.env.cors,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 // Cosas Web
 const app = express();
@@ -63,6 +70,6 @@ function getJSON(){
 }
 
 // API
-app.get("/", (req, res) => {
+app.get("/", cors(corsOptions), (req, res) => {
     res.json( getJSON() );
 });
