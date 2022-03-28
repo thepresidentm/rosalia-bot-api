@@ -22,8 +22,15 @@ const abc = [
 for(var i = 0; i < abc.length; i++){
     diccionarios[i] = fs.readFileSync("diccionarios/" + abc[i] + ".csv").toString().split('\n');
 }
-console.log(diccionarios);
+
+//Obtener palabra
+function getPalabra(diccionario){
+    let numero = Math.floor(Math.random() * diccionario.length);
+    return diccionario[numero];
+
+}
+
 // API
 app.get("/", (req, res) => {
-    res.json( { mensaje: "Hola Mundo" } );
+    res.json( { mensaje: getPalabra(diccionarios[0]) } );
 });
